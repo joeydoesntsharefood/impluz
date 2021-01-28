@@ -1791,3 +1791,21 @@ div.text-muted {
         height: 100%
     }
 }
+/**Carousel Products Index**/
+.col-item
+            {
+                background: #FFF;
+            }
+            .col-item .photo img
+            {
+                margin: 0 auto;
+                width: 100%;
+            }
+            
+            .col-item .info
+            {
+                padding: 10px;
+                border-radius: 0 0 5px 5px;
+                margin-top: 1px;
+            }
+            
