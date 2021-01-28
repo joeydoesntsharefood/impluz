@@ -315,9 +315,9 @@ h1, h2, h3, h4, h5,
     .site-footer {
       padding: 8em 0; } }
   .site-footer .border-top {
-    border-top: 1px solid rgba(255, 255, 255, 0.1) !important; }
+    border-top: 1px solid #000 !important; }
   .site-footer p {
-    color: gray; }
+    color: #000; }
   .site-footer h2, .site-footer h3, .site-footer h4, .site-footer h5 {
     color: #000; }
   .site-footer a {
@@ -479,7 +479,7 @@ h1, h2, h3, h4, h5,
     font-size: 1.7rem; }
     .site-navbar .site-logo a {
       color: #3e64ff;
-      text-transform: lowercase; }
+      text-transform: uppercase; }
     @media (max-width: 991.98px) {
       .site-navbar .site-logo {
         float: left;
@@ -1336,7 +1336,7 @@ h1, h2, h3, h4, h5,
     color: #3e64ff; }
 
 .bg-light {
-  background-color: #f6f5f5 !important; }
+  background-color: #2FBFF5 !important; }
 
 .feature-1 {
   background: #ccc;
