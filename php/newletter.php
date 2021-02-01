@@ -1,12 +1,12 @@
 <?php
 // an email address that will be in the From field of the email.
-$from = 'contato@imperioilumincao.com.br';
+$from = 'contato@imperioiluminacao.com.br';
 
 // an email address that will receive the email with the output of the form
-$sendTo = 'contato@imperioilumincao.com.br';
+$sendTo = 'contato@imperioiluminacao.com.br';
 
 // subject of the email
-$subject = 'Nova mensagem de contato do site.';
+$subject = 'Novo e-mail cadastrado.';
 
 // form field names and their translations.
 // array variable name => Text to appear in the email
@@ -20,7 +20,7 @@ try
 
     if(count($_POST) == 0) throw new \Exception('Form is empty');
 
-    $emailText = "You have a new message from your contact form\n=============================\n";
+    $emailText = "Você tem um novo email cadastrado no site\n=============================\n";
 
     foreach ($_POST as $key => $value) {
         // If the field exists in the $fields array, include it in the email
@@ -39,11 +39,11 @@ try
     // Send email
     mail($sendTo, $subject, $emailText, implode("\n", $headers));
 
-    echo "<script>window.alert('Sua mensagem foi enviada!Muito Obrigado.');window.location.href='index.html'</script>";
+    echo "<script>window.alert('E-mail cadastrado! Muito Obrigado.');window.location.href='https://imperioiluminacao.com.br/tests'</script>";
 }
 catch (\Exception $e)
 {
-    echo "<script>window.alert('Sua mensagem não foi enviada.Tente novamente.');window.location.href='index.html'</script>";
+    echo "<script>window.alert('Seu e-mail não foi cadastrado. Tente novamente.');window.location.href='https://imperioiluminacao.com.br/tests'</script>";
 }
 
 

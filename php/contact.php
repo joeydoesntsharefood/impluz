@@ -1,9 +1,9 @@
 <?php
 // an email address that will be in the From field of the email.
-$from = 'test@imperioiluminacao.com.br';
+$from = 'contato@imperioiluminacao.com.br';
 
 // an email address that will receive the email with the output of the form
-$sendTo = 'test@imperioiluminacao.com.br';
+$sendTo = 'contato@imperioiluminacao.com.br';
 
 // subject of the email
 $subject = 'Nova mensagem vinda do site';
