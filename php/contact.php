@@ -1,63 +1,61 @@
 <?php
-    if(isset($_POST['submit']))
-    {
-        $name = $_POST['name']; // Get Name value from HTML Form
-        $email_id = $_POST['email']; // Get Email Value
-        $mobile_no = $_POST['mobile']; // Get Mobile No
-        $msg = $_POST['message']; // Get Message Value
-         
-        $to = "test@imperioiluminacao.com.br"; // You can change here your Email
-        $subject = "'$name' has been sent a mail"; // This is your subject
-         
-        // HTML Message Starts here
-        $message ="
-        <html>
-            <body>
-                <table style='width:600px;'>
-                    <tbody>
-                        <tr>
-                            <td style='width:150px'><strong>Name: </strong></td>
-                            <td style='width:400px'>$name</td>
-                        </tr>
-                        <tr>
-                            <td style='width:150px'><strong>Email ID: </strong></td>
-                            <td style='width:400px'>$email_id</td>
-                        </tr>
-                        <tr>
-                            <td style='width:150px'><strong>Mobile No: </strong></td>
-                            <td style='width:400px'>$mobile_no</td>
-                        </tr>
-                        <tr>
-                            <td style='width:150px'><strong>Message: </strong></td>
-                            <td style='width:400px'>$msg</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </body>
-        </html>
-        ";
-        // HTML Message Ends here
-         
-        // Always set content-type when sending HTML email
-        $headers = "MIME-Version: 1.0" . "\r\n";
-        $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
- 
-        // More headers
-        $headers .= 'From: Admin <contato@imperioiluminacao.com.br>' . "\r\n"; // Give an email id on which you want get a reply. User will get a mail from this email id
-        
-         
-        if(mail($to,$subject,$message,$headers)){
-            // Message if mail has been sent
-            echo "<script>
-                    window.alert('Mail has been sent Successfully.');
-                </script>";
-        }
- 
-        else{
-            // Message if mail has been not sent
-            echo "<script>
-                    window.alert('EMAIL FAILED');
-                </script>";
+// an email address that will be in the From field of the email.
+$from = 'test@imperioiluminacao.com.br';
+
+// an email address that will receive the email with the output of the form
+$sendTo = 'test@imperioiluminacao.com.br';
+
+// subject of the email
+$subject = 'Nova mensagem vinda do site';
+
+// form field names and their translations.
+// array variable name => Text to appear in the email
+$fields = array('name' => 'Name', 'phone' => 'Phone', 'need' => 'Need', 'email' => 'Email', 'message' => 'Message');
+
+// if you are not debugging and don't need error reporting, turn this off by error_reporting(0);
+error_reporting(E_ALL & ~E_NOTICE);
+
+try
+{
+
+    if(count($_POST) == 0) throw new \Exception('Form is empty');
+
+    $emailText = "Você tem uma mensagem do site\n=============================\n";
+
+    foreach ($_POST as $key => $value) {
+        // If the field exists in the $fields array, include it in the email
+        if (isset($fields[$key])) {
+            $emailText .= "$fields[$key]: $value\n";
         }
     }
-?>
+
+    // All the neccessary headers for the email.
+    $headers = array('Content-Type: text/plain; charset="UTF-8";',
+        'From: ' . $from,
+        'Reply-To: ' . $from,
+        'Return-Path: ' . $from,
+    );
+
+    // Send email
+    mail($sendTo, $subject, $emailText, implode("\n", $headers));
+
+    echo "<script>window.alert('Sua mensagem foi enviada!Muito Obrigado.');window.location.href='https://imperioiluminacao.com.br/tests'</script>";
+}
+catch (\Exception $e)
+{
+    echo "<script>window.alert('Sua mensagem não foi enviada.Tente novamente.');window.location.href='https://imperioiluminacao.com.br/tests'</script>";
+}
+
+
+// if requested by AJAX request return JSON response
+if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
+    $encoded = json_encode($responseArray);
+
+    header('Content-Type: application/json');
+
+    echo $encoded;
+}
+// else just display the message
+else {
+    echo $responseArray['message'];
+}
