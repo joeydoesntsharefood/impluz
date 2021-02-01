@@ -49,14 +49,14 @@
         if(mail($to,$subject,$message,$headers)){
             // Message if mail has been sent
             echo "<script>
-                    alert('Mail has been sent Successfully.');
+                    window.alert('Mail has been sent Successfully.');
                 </script>";
         }
  
         else{
             // Message if mail has been not sent
             echo "<script>
-                    alert('EMAIL FAILED');
+                    window.alert('EMAIL FAILED');
                 </script>";
         }
     }
